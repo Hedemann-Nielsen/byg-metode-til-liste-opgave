@@ -22,6 +22,24 @@ class SongModel {
 			});
 		});
 	};
+
+	get = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const sql = `   SELECT s.id, s.title, s.content, s.artist_id, 
+                            a.name AS artist, s.created
+                            FROM song s
+                            JOIN artist a
+                            ON s.artist_id = a.id
+                            WHERE s.id = ?`;
+			db.query(sql, [req.params.id], (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(...result);
+				}
+			});
+		});
+	};
 }
 
 export default SongModel;

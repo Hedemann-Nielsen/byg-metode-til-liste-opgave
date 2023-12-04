@@ -9,5 +9,8 @@ const controller = new SongController();
 router.get("/api/song", (req, res) => {
 	controller.list(req, res);
 });
+router.get("/api/song/:id([0-9]*)", (req, res) => {
+	controller.get(req, res);
+});
 
 export { router };
