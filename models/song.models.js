@@ -40,6 +40,21 @@ class SongModel {
 			});
 		});
 	};
+
+	create = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const arrValues = Object.values(req.body);
+			const sql = `   INSERT INTO song(title, content, artist_id)
+                            VALUES(?,?,?)`;
+			db.query(sql, arrValues, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve({ status: true, id: result.insertId });
+				}
+			});
+		});
+	};
 }
 
 export default SongModel;

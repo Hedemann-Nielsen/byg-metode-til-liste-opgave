@@ -12,5 +12,8 @@ router.get("/api/song", (req, res) => {
 router.get("/api/song/:id([0-9]*)", (req, res) => {
 	controller.get(req, res);
 });
+router.post("/api/song", (req, res) => {
+	controller.create(req, res);
+});
 
 export { router };

@@ -15,6 +15,10 @@ class SongController {
 		const result = await model.get(req, res);
 		res.json(result);
 	};
+	create = async (req, res) => {
+		const result = await model.create(req, res);
+		res.json(result);
+	};
 }
 
 export default SongController;
