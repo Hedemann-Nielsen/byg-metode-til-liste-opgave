@@ -15,5 +15,11 @@ router.get("/api/song/:id([0-9]*)", (req, res) => {
 router.post("/api/song", (req, res) => {
 	controller.create(req, res);
 });
+router.put("/api/song", (req, res) => {
+	controller.update(req, res);
+});
+router.delete("/api/song/:id([0-9]*)", (req, res) => {
+	controller.delete(req, res);
+});
 
 export { router };
