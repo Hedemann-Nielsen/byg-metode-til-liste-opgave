@@ -21,5 +21,23 @@ router.put("/api/song", (req, res) => {
 router.delete("/api/song/:id([0-9]*)", (req, res) => {
 	controller.delete(req, res);
 });
+//users
+router.get("/api/user", (req, res) => {
+	controller.UserList(req, res);
+});
+router.get("/api/user/:id([0-9]*)", (req, res) => {
+	controller.get(req, res);
+});
+router.post("/api/user", (req, res) => {
+	controller.createUser(req, res);
+});
+router.put("/api/user", (req, res) => {
+	controller.updateUser(req, res);
+});
+router.delete("/api/user/:id([0-9]*)", (req, res) => {
+	controller.deleteUser(req, res);
+});
+
+// Slet bruger
 
 export { router };

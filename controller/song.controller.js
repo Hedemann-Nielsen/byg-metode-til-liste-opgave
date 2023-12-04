@@ -27,6 +27,29 @@ class SongController {
 		const result = await model.delete(req, res);
 		res.json(result);
 	};
+
+	//users
+	UserList = async (req, res) => {
+		const result = await model.UserList(req, res);
+		res.json(result);
+	};
+
+	get = async (req, res) => {
+		const result = await model.user(req, res);
+		res.json(result);
+	};
+	createUser = async (req, res) => {
+		const result = await model.createUser(req, res);
+		res.json(result);
+	};
+	updateUser = async (req, res) => {
+		const result = await model.updateUser(req, res);
+		res.json(result);
+	};
+	deleteUser = async (req, res) => {
+		const result = await model.deleteUser(req, res);
+		res.json(result);
+	};
 }
 
 export default SongController;

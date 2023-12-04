@@ -87,6 +87,86 @@ class SongModel {
 			});
 		});
 	};
+
+	//Users
+
+	UserList = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const orberBy = req.query.orderBy || "Firstname";
+			// const dir = req.query.dir || "ASC";
+			// const limit = req.query.limit ? `LIMIT ${req.query.limit}` : "";
+			const sql = `   SELECT * from user
+                            ORDER BY ${orberBy} `;
+			db.query(sql, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+			});
+		});
+	};
+	user = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const sql = `   SELECT * from user 
+                            WHERE id = ?`;
+			db.query(sql, [req.params.id], (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(...result);
+				}
+			});
+		});
+	};
+	createUser = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const arrValues = Object.values(req.body);
+			const sql = `   INSERT INTO user(Firstname, Lastname, Username, Password, Email, Birthday, Gender)
+                            VALUES(?,?,?,?,?,?,? )`;
+			db.query(sql, arrValues, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve({ status: true, id: result.insertId });
+				}
+			});
+		});
+	};
+	updateUser = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const arrValues = Object.values(req.body);
+			const sql = `   UPDATE user 
+                            SET Firstname = ?,
+                            Lastname = ?,
+                            Username = ?,
+                            Password = ?,
+                            Email = ?,
+                            Birthday = ?
+                            WHERE id = ?`;
+			db.query(sql, arrValues, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve({ status: true, id: req.body.id });
+				}
+			});
+		});
+	};
+
+	deleteUser = (req, res) => {
+		return new Promise((resolve, reject) => {
+			const sql = `   DELETE FROM user 
+                            WHERE id = ?`;
+			db.query(sql, [req.params.id], (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve({ status: true });
+				}
+			});
+		});
+	};
 }
 
 export default SongModel;
